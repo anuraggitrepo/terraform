@@ -25,7 +25,8 @@ resource "azurerm_network_interface" "nic-card" {
     public_ip_address_id          = "${azurerm_public_ip.publicip.id}"
   }
 }
-count = 11
+resource "azurerm_windows_virtual_machine" "Virtual_Machine" {
+  count = 11
   name = "CUSPVMSNRPT0${count.index + 1}"
   azurerm_resource_group = "${azurerm_resource_group.rg.id}"
   network_interface_ids = ["${azurerm_network_interface.nic-card.id}"]
